@@ -276,4 +276,71 @@ BRP mult
 LDA 02
 SUB 01
 OUT
+
 one DAT 1*/
+/* bigger sample program
+INP
+STA 00
+INP
+STA 01
+INP
+STA max
+BRP storeRem
+div LDA 00
+SUB 01
+STA 00
+LDA quot
+ADD one
+STA quot
+LDA 00
+BRP storeRem
+LDA rem
+BRZ end
+LDA max
+SUB one
+STA max
+BRP clear
+BRA end
+storeRem STA rem
+BRA div
+clear LDA quot
+SUB one
+ADD asc
+OTC
+LDA dot
+BRZ cont
+OTC
+SUB dot
+STA dot
+cont LDA rem
+STA 00
+STA 02
+SUB rem
+STA quot
+STA rem
+LDA nine
+STA 03
+mult LDA 02
+ADD 00
+STA 02
+LDA 03
+SUB one
+STA 03
+BRP mult
+LDA 02
+SUB 00
+STA 00
+BRA div
+end LDA quot
+ADD asc
+SUB one
+OTC
+HLT
+quot DAT 
+rem DAT 
+one DAT 1
+max DAT 1
+nine DAT 9
+dot DAT 46
+asc DAT 48
+	*/
